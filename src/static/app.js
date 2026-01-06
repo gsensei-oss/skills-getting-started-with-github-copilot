@@ -20,11 +20,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // helper to get initials from an email/name
+        function initialsFromString(s) {
+          if (!s) return "?";
+          const base = s.split("@")[0];
+          const parts = base.split(/[^A-Za-z0-9]+/).filter(Boolean);
+          if (parts.length === 0) return base[0]?.toUpperCase() || "?";
+          return parts
+            .slice(0, 2)
+            .map(p => p[0].toUpperCase())
+            .join("");
+        }
+
+        const participants = details.participants || [];
+        let participantsHTML = "";
+        if (participants.length > 0) {
+          participantsHTML = `
+            <div class="activity-card__participants">
+              <h5 class="activity-card__participants-title">Participants</h5>
+              <ul class="participants-list">
+                ${participants
+                  .map(
+                    (p) =>
+                      `<li class="participant"><span class="participant__avatar">${initialsFromString(
+                        p
+                      )}</span><span class="participant__name">${p}</span></li>`
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          `;
+        }
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          ${participantsHTML}
         `;
 
         activitiesList.appendChild(activityCard);

@@ -1,0 +1,50 @@
+.activity-card__participants {
+	margin-top: 12px;
+	border-top: 1px solid rgba(0,0,0,0.06);
+	padding-top: 10px;
+}
+
+.activity-card__participants-title {
+	margin: 0 0 8px 0;
+	font-size: 0.85rem;
+	color: #555;
+	font-weight: 600;
+}
+
+.participants-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.participant {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.participant__avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: #e6e6e6;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.85rem;
+	color: #222;
+}
+
+.participant__avatar--initials {
+	background: linear-gradient(135deg,#f0f0f0,#ddd);
+	font-weight: 600;
+}
+
+.participant__name {
+	font-size: 0.9rem;
+	color: #222;
+}
